@@ -1,68 +1,178 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)  SOFTWARE ENGINEERING IMMERSIVE
 
-## Available Scripts
+## Prerequisites
+- Introduction to React
+- Create-react-app installed
+- Basic understanding of components
+- Basic understanding of passing props 
+- Visual Studio Code installed
 
-In the project directory, you can run:
+## Learning Objectives
+By the end of this, students should be able to:
+- Use Functional React components
+- Nest components
+- Create a list component
 
-### `npm start`
+## Framing
+In React there are two ways to define components, Functional and Class components. Functional components are normal JavaScript functions which accept props and returns a React element. 
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```javascript
+const Greet = props => <h1>Hello {props.name}</h1>
+```
+Functional components focus on the UI and don't have their own state. The value returned from the function only depends on the values passed as a parameter also known as props. The function will return the same result when passed the same props. Functional components also do not use setState, lifecylce methods, or *this*. Functional components are also "pure functions" meaning they do not have side effects. 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Get Started
 
-### `npm test`
+To start this build out, begin by creating a new React project: 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. ```$ npm init react-app functional-components```
+1. Next ```cd functional-components```
+1. Open text text editor
+1. ```npm run start```
+1. Happy coding!
 
-### `npm run build`
+## Nesting Components
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Nested Components are components that are inside of other components. They follow the common engineering pattern of parent, child, and sibling. We take advantage of this to create dynamic and complex UI or user interface. UI includes elements such as buttons, dropdowns menus, and many other elements. 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+The beauty of React is that it is component based. Let's create a new component to hold our other components we need to build. Let's start by creating a file named ```Layout.js`` to nest our other components. This is a functional component because it will be a container for other components.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Layout Component
+```jsx
+import React from 'react'
 
-### `npm run eject`
+const Layout = () => {
+    return(
+        <div>
+            // Place components here in Layout component
+        </div>
+    )
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+export default Layout
+```
+## You Do: (10 minutes)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+*In basic layout tradition we will have a header, main content, and a footer. Let's create three more files ```Header.js```, ```Footer.js```, and ```Main.js```. Since we are only displaying UI, all components should be functional components
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+*Now add some JSX to each of our components.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+*Import each component into our ```Layout.js`` component.
 
-## Learn More
+Your Layout component should look similar to the updated ```Layout.js`` component.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```jsx
+import React from 'react'
+import Header from './Header'
+import Main from './Main'
+import Footer from './Footer'
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+const Layout = () => {
+    return(
+        <div>
+           <Header />
+           <Main />
+           <Footer />
+        </div>
+    )
+}
 
-### Code Splitting
+export default Layout
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Now there are 3 components nested inside the ```Layout.js```. Each imported component is a child of ```Layout.js```.
 
-### Analyzing the Bundle Size
+## Adding Data to Our Application
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+In a separate file name ```data.js``` we are adding an array of objects that includes some city data to add to our application. Import the ```data.js``` file into our application.
 
-### Making a Progressive Web App
+We can do this a few ways:
+1. Import into ```App.js``` component and pass as props down through our application to the ```Main.js``` component
+2. Import ```data.js``` directly into the ```Main.js``` component.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The second way is easier but the first way listed allows us to passing props through our application. **Note: Make sure to export the data from the file**
 
-### Advanced Configuration
+<details>
+    <summary>Data Array:</summary>
+    
+```
+const cities = [
+    {
+        country: 'China',
+        population: 1403500365,
+        capitol: 'Beijing',
+        language: 'Chinese',
+    },
+    {
+        country: 'Brazil',
+        population: 205823665, 
+        capitol: 'Brazilia',
+        language: 'Portuguese',
+    },
+    {
+        country: 'Egypt',
+        population: 90120000,
+        capitol: 'Cairo',
+        language: 'Arabic',
+    },
+    {
+        country: 'Spain',
+        population: 46468102,
+        capitol: 'Madrid',
+        language: 'Spainish',
+    }
+]
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+</details>
 
-### Deployment
+## Prepare a New Component to Display Data
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+Look at the object given:
+1. What properties are we going to render?
+2. What is the appriate JSX? Be semantic.
 
-### `npm run build` fails to minify
+## You Do: Create a new component with the file name ```City.js``` to render our data
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<details>
+    <summary>City Component:</summary>
+    
+```jsx
+import React from 'react'
+
+const City = (props) => {
+
+    const { capitol, country, population, language } = props.city
+    
+    return(
+       <div>
+            <p>Capitol: {capitol}</p>
+            <p>Country: {country}</p>
+            <p>Population: {population}</p>
+            <p>Language: {language}</p>
+       </div>
+    )
+}
+
+export default City
+```
+
+</details>
+
+
+
+**Your ```City.js``` component should look similar to depending on how the props object is destructured.**
+
+In your ```Main.js``` component, import the ```City.js``` component.  Use the map Array method to map over the cities array. Return the ```Cities.js``` component inside of map Array method.
+
+```jsx
+{cities.map( (city, index) => 
+    (<City city={city} key={index} />)
+)}
+```
+## Conclusion
+
+You have now nested fucntional components, passed props down through your application, and mapped over data to display UI.
+
+
+
