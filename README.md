@@ -1,6 +1,6 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)  SOFTWARE ENGINEERING IMMERSIVE
 
-![](https://gph.is/2aQ0EOY)
+![](https://media.giphy.com/media/XOXdQszYm4I3m/giphy.gif)
 
 ## Prerequisites
 - Introduction to React
